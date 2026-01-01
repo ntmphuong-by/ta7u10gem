@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 10: ENERGY SOURCES - The Complete Textbook Edition</title>
+<style>
+  :root {
+    --primary: #F39C12; /* Solar Yellow */
+    --secondary: #27AE60; /* Eco Green */
+    --bg: #2C3E50; /* Dark Blue */
+    --card: #ECF0F1;
+    --text: #2C3E50;
+    --correct: #27ae60;
+    --wrong: #c0392b;
+  }
+
+  body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 70px; }
+  
+  /* HEADER */
+  header {
+    background: #34495E; padding: 15px 20px; border-bottom: 3px solid var(--primary);
+    position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center;
+    color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  .brand { font-size: 20px; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+  .stats { font-size: 14px; font-weight: bold; }
+  .score-box { background: var(--secondary); padding: 5px 12px; border-radius: 15px; color: white; margin-left: 10px; }
+
+  /* CONTAINER */
+  .container { max-width: 950px; margin: 25px auto; padding: 0 15px; display: grid; grid-template-columns: 260px 1fr; gap: 25px; }
+  @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: #BDC3C7; border-radius: 12px; padding: 15px; height: fit-content;
+    position: sticky; top: 90px; border: 1px solid #95A5A6;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .nav-btn {
+    display: block; width: 100%; text-align: left; padding: 12px; border: none; background: transparent;
+    color: #2C3E50; cursor: pointer; border-radius: 8px; font-size: 14px; margin-bottom: 5px; border-bottom: 1px solid #aaa; font-weight: 600;
+  }
+  .nav-btn:hover { background: #95A5A6; color: #fff; }
+  .nav-btn.active { background: var(--secondary); color: #fff; font-weight: 800; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+
+  /* MAIN CONTENT */
+  .slide { 
+    background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid #BDC3C7;
+    min-height: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: fadeIn 0.4s ease-out;
+  }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+
+  h2 { margin: 0 0 15px 0; color: var(--secondary); font-size: 26px; border-bottom: 2px solid #BDC3C7; padding-bottom: 10px;}
+  .desc { color: #7F8C8D; font-style: italic; font-size: 15px; margin-bottom: 25px; }
+
+  /* READING & DIALOGUE SCROLL */
+  .scroll-content {
+    background: #fff; padding: 20px; border-radius: 10px; max-height: 400px; overflow-y: auto;
+    font-size: 16px; line-height: 1.7; border: 1px solid #BDC3C7; margin-bottom: 20px; color: #2C3E50;
+  }
+  .line { padding: 10px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; border-left: 4px solid transparent; }
+  .line:hover { background: #ECF0F1; }
+  .line.active { background: #D5F5E3; border-left-color: var(--secondary); font-weight: 600; }
+  .role { font-weight: 800; color: var(--primary); text-transform: uppercase; font-size: 12px; margin-right: 8px; }
+  .en { display: block; color: #2C3E50; }
+  .vi { display: block; font-size: 14px; color: #7F8C8D; margin-top: 4px; font-style: italic; }
+  .hidden { display: none !important; }
+
+  /* QUIZ STYLES */
+  .q-block { margin-bottom: 35px; border-bottom: 1px dashed #BDC3C7; padding-bottom: 25px; }
+  .q-text { font-size: 19px; font-weight: 700; margin-bottom: 12px; color: #2C3E50; }
+  .q-vi { font-size: 15px; color: #7F8C8D; margin-bottom: 15px; font-style: italic; }
+
+  /* OPTIONS GRID */
+  .opts-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .opt-btn {
+    padding: 14px 20px; background: #fff; border: 2px solid #BDC3C7; border-radius: 12px; color: #2C3E50;
+    cursor: pointer; transition: 0.2s; font-size: 15px; font-weight: 600;
+    flex: 1 1 45%; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  }
+  .opt-btn:hover { background: #ECF0F1; border-color: var(--secondary); transform: translateY(-2px); }
+  .opt-sub { font-size: 13px; color: #7F8C8D; margin-top: 4px; font-style: italic; font-weight: 400; }
+
+  /* FEEDBACK */
+  .opt-btn.correct { background: #D5F5E3; border-color: var(--correct); color: var(--correct); pointer-events: none; }
+  .opt-btn.wrong { background: #FADBD8; border-color: var(--wrong); color: var(--wrong); opacity: 0.7; pointer-events: none; }
+  
+  .expl-box {
+    margin-top: 15px; padding: 15px; background: #D6EAF8; border-left: 5px solid var(--secondary);
+    border-radius: 6px; font-size: 14px; color: #2C3E50; display: none; animation: slideDown 0.3s;
+  }
+  .expl-title { font-weight: 800; color: var(--secondary); text-transform: uppercase; font-size: 11px; display: block; margin-bottom: 5px; }
+  @keyframes slideDown { from{opacity:0; transform:translateY(-10px)} to{opacity:1; transform:translateY(0)} }
+
+  /* FOOTER */
+  .footer {
+    position: fixed; bottom: 0; left: 0; width: 100%; background: #34495E;
+    padding: 12px; display: flex; justify-content: center; gap: 15px; border-top: 1px solid #2C3E50; z-index: 200;
+  }
+  .ctrl-btn {
+    background: #2C3E50; color: #ECF0F1; border: 1px solid #7F8C8D; padding: 10px 25px; border-radius: 25px;
+    cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.2s;
+  }
+  .ctrl-btn:hover { background: #7F8C8D; }
+  .ctrl-btn.active { background: var(--primary); color: #2C3E50; border-color: var(--primary); box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+  .ctrl-btn.music-on { background: #9B59B6; border-color: #9B59B6; animation: glow 1.5s infinite; color: white; }
+  @keyframes glow { 0%{box-shadow:0 0 5px #9B59B6;} 50%{box-shadow:0 0 15px #9B59B6;} 100%{box-shadow:0 0 5px #9B59B6;} }
+
+  .next-btn {
+    background: var(--secondary); color: white; padding: 12px; width: 100%; border: none;
+    border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; display: none; font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .next-btn:hover { background: #1E8449; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .slide { padding: 15px; }
+    .opts-grid { flex-direction: column; }
+    .opt-btn { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">UNIT 10: ENERGY</div>
+  <div class="stats">
+    Tiến độ: <span id="qCount">0</span>/<span id="totalQ">0</span> 
+    <span class="score-box">Điểm: <span id="score">0</span></span>
+  </div>
+</header>
+
+<div class="container">
+  <aside class="sidebar" id="sidebar">
+    </aside>
+
+  <main id="main">
+    </main>
+</div>
+
+<div class="footer">
+  <button class="ctrl-btn" id="btnMusic" onclick="toggleMusic()">🎵 Nhạc: OFF</button>
+  <button class="ctrl-btn active" id="btnVi" onclick="toggleVi()">🇻🇳 Dịch: ON</button>
+  <button class="ctrl-btn" onclick="if(confirm('Làm lại từ đầu?')) location.reload()">↻ Reset</button>
+</div>
+
+<script>
+/* ==========================================================================
+   DATABASE (COMPLETE UNIT 10 - Global Success 7)
+   Full Content from P.105-109
+   ========================================================================== */
+const DATA = [
+  // --- SECTION 1: GETTING STARTED ---
+  {
+    id: "gs_read", title: "1. Getting Started", desc: "Types of energy sources", type: "dialogue",
+    script: [
+      {r:"Lan", e:"Hi, Dad.", v:"Chào bố."},
+      {r:"Mr Tan", e:"Lan, what are you doing? It's pretty late now.", v:"Lan, con đang làm gì đấy? Muộn rồi đó."},
+      {r:"Lan", e:"I'm doing a project on energy sources. But I don't quite understand what energy is.", v:"Con đang làm dự án về các nguồn năng lượng. Nhưng con chưa hiểu lắm năng lượng là gì."},
+      {r:"Mr Tan", e:"Well, it's power that we use to provide us with light, heat or electricity.", v:"À, đó là sức mạnh chúng ta dùng để cung cấp ánh sáng, nhiệt hoặc điện."},
+      {r:"Lan", e:"Oh. Where does it come from?", v:"Ồ. Nó đến từ đâu ạ?"},
+      {r:"Mr Tan", e:"It comes from many different sources like coal, oil, natural gas,... We call them non-renewable sources.", v:"Nó đến từ nhiều nguồn như than đá, dầu mỏ, khí đốt... Ta gọi chúng là nguồn không tái tạo."},
+      {r:"Lan", e:"Can it come from the sun, wind or water too?", v:"Nó có đến từ mặt trời, gió hay nước không ạ?"},
+      {r:"Mr Tan", e:"Yes, it can. We call those types of energy renewable sources because we cannot run out of them. Renewable means we can easily replace them.", v:"Có chứ. Ta gọi đó là năng lượng tái tạo vì ta không dùng cạn kiệt chúng được. Tái tạo nghĩa là ta có thể dễ dàng thay thế chúng."},
+      {r:"Lan", e:"I get it now.", v:"Con hiểu rồi."},
+      {r:"Mr Tan", e:"You know, some types of energy are cheap and easy to use, but others are more expensive and harder to find...", v:"Con biết không, một số loại thì rẻ và dễ dùng, nhưng số khác thì đắt và khó tìm hơn..."}
+    ]
+  },
+  {
+    id: "gs_ex2", title: "Getting Started - Ex 2", desc: "What are they talking about?", type: "quiz",
+    qs: [
+      {q:"What are Lan and her father talking about?", v:"Lan và bố đang nói về chuyện gì?", o:[{t:"A. Energy",v:"Năng lượng"},{t:"B. Sources",v:"Các nguồn"},{t:"C. Energy sources",v:"Các nguồn năng lượng"}], a:2, e:"Tiêu đề bài học và nội dung chính xoay quanh 'Energy sources'."}
+    ]
+  },
+  {
+    id: "gs_ex3", title: "Getting Started - Ex 3", desc: "Answer the questions", type: "quiz",
+    qs: [
+      {q:"1. What is Lan doing?", v:"Lan đang làm gì?", o:[{t:"Doing a project",v:"Làm dự án"},{t:"Watching TV",v:""},{t:"Sleeping",v:""}], a:0, e:"Lan nói: 'I'm doing a project on energy sources'."},
+      {q:"2. What does energy mean?", v:"Năng lượng nghĩa là gì?", o:[{t:"Power for light, heat, electricity",v:"Năng lượng cho ánh sáng..."},{t:"Water source",v:""},{t:"Wind power",v:""}], a:0, e:"Mr Tan: 'power that we use to provide us with light...'"},
+      {q:"3. Where does energy come from?", v:"Năng lượng đến từ đâu?", o:[{t:"Many different sources",v:"Nhiều nguồn khác nhau"},{t:"Only the sun",v:""},{t:"Only coal",v:""}], a:0, e:"Mr Tan: 'It comes from many different sources...'"},
+      {q:"4. What are renewable sources?", v:"Nguồn tái tạo là gì?", o:[{t:"Sun, wind, water",v:"Mặt trời, gió, nước"},{t:"Coal, oil, gas",v:""},{t:"Electricity",v:""}], a:0, e:"Lan hỏi về sun, wind, water và bố xác nhận."}
+    ]
+  },
+  {
+    id: "gs_ex4", title: "Getting Started - Ex 4", desc: "Match pictures", type: "quiz",
+    qs: [
+      {q:"Picture a (Wind turbines) matches with:", v:"Hình a (Tua bin gió) nối với:", o:[{t:"2. wind energy",v:"năng lượng gió"},{t:"1. oil",v:""},{t:"3. coal",v:""},{t:"4. natural gas",v:""}], a:0, e:"Hình ảnh các tua bin gió."},
+      {q:"Picture b (Factory smoke) matches with:", v:"Hình b (Nhà máy khói) nối với:", o:[{t:"3. coal",v:"than đá"},{t:"2. wind energy",v:""},{t:"1. oil",v:""},{t:"4. natural gas",v:""}], a:0, e:"Nhà máy nhiệt điện than."},
+      {q:"Picture c (Flaring pipes) matches with:", v:"Hình c (Ống dẫn lửa) nối với:", o:[{t:"4. natural gas",v:"khí tự nhiên"},{t:"2. wind energy",v:""},{t:"3. coal",v:""},{t:"1. oil",v:""}], a:0, e:"Biểu tượng khai thác khí đốt."},
+      {q:"Picture d (Red barrels) matches with:", v:"Hình d (Thùng đỏ) nối với:", o:[{t:"1. oil",v:"dầu mỏ"},{t:"4. natural gas",v:""},{t:"3. coal",v:""},{t:"2. wind energy",v:""}], a:0, e:"Thùng chứa dầu."}
+    ]
+  },
+  {
+    id: "gs_ex5", title: "Getting Started - Ex 5", desc: "Complete sentences (Word Bank)", type: "quiz",
+    qs: [
+      {q:"1. Energy is ______ that we use to provide us with light, heat or electricity.", v:"Năng lượng là ______ chúng ta dùng...", o:[{t:"power",v:"sức mạnh"},{t:"water",v:""},{t:"source",v:""}], a:0, e:"Mr Tan: 'it's power that we use...'"},
+      {q:"2. When energy comes from the ______, wind and water, we call it renewable energy.", v:"Khi năng lượng đến từ ______, gió và nước...", o:[{t:"sun",v:"mặt trời"},{t:"moon",v:""},{t:"earth",v:""}], a:0, e:"Mr Tan: 'come from the sun, wind, or water'."},
+      {q:"3. When energy comes from wind, we call it ______ energy.", v:"Năng lượng từ gió gọi là...", o:[{t:"wind",v:"gió"},{t:"solar",v:""},{t:"hydro",v:""}], a:0, e:"Wind -> Wind energy."},
+      {q:"4. We cannot ______ out of renewable energy.", v:"Chúng ta không thể ______ hết năng lượng tái tạo.", o:[{t:"run",v:"cạn kiệt (run out)"},{t:"walk",v:""},{t:"use",v:""}], a:0, e:"Mr Tan: 'we cannot run out of them'."},
+      {q:"5. Some types of energy are ______ and easy to use.", v:"Một số loại thì ______ và dễ dùng.", o:[{t:"cheap",v:"rẻ"},{t:"expensive",v:"đắt"},{t:"hard",v:""}], a:0, e:"Mr Tan: 'some types of energy are cheap and easy to use'."}
+    ]
+  },
+
+  // --- A CLOSER LOOK 1 ---
+  {
+    id: "cl1_ex1", title: "2. A Closer Look 1 - Ex 1", desc: "Match Types & Sources", type: "quiz",
+    qs: [
+      {q:"1. solar energy - Match with:", v:"Năng lượng mặt trời - Nối với:", o:[{t:"d. the sun",v:"mặt trời"},{t:"a. water",v:""},{t:"c. wind",v:""}], a:0, e:"Solar -> Sun."},
+      {q:"2. wind energy - Match with:", v:"Năng lượng gió - Nối với:", o:[{t:"c. wind",v:"gió"},{t:"b. nuclear",v:""},{t:"a. water",v:""}], a:0, e:"Wind -> Wind."},
+      {q:"3. hydro energy - Match with:", v:"Thủy điện - Nối với:", o:[{t:"a. water",v:"nước"},{t:"d. the sun",v:""},{t:"c. wind",v:""}], a:0, e:"Hydro -> Water."},
+      {q:"4. nuclear energy - Match with:", v:"Năng lượng hạt nhân - Nối với:", o:[{t:"b. nuclear",v:"nguyên tử"},{t:"c. wind",v:""},{t:"d. the sun",v:""}], a:0, e:"Nuclear -> Nuclear sources."}
+    ]
+  },
+  {
+    id: "cl1_ex2", title: "A Closer Look 1 - Ex 2", desc: "Label the pictures (Word Bank)", type: "quiz",
+    qs: [
+      {q:"Picture 1: Factory with towers emitting smoke/steam.", v:"Hình 1: Nhà máy có tháp khói.", o:[{t:"nuclear energy",v:"năng lượng hạt nhân"},{t:"wind energy",v:""},{t:"hydro energy",v:""}], a:0, e:"Hình ảnh đặc trưng của nhà máy điện hạt nhân."},
+      {q:"Picture 2: Dam with water flowing.", v:"Hình 2: Đập nước.", o:[{t:"hydro energy",v:"thủy điện"},{t:"solar energy",v:""},{t:"coal",v:""}], a:0, e:"Đập thủy điện (Hydro)."},
+      {q:"Picture 3: Solar panels.", v:"Hình 3: Pin mặt trời.", o:[{t:"solar energy",v:"năng lượng mặt trời"},{t:"nuclear energy",v:""},{t:"wind energy",v:""}], a:0, e:"Tấm pin năng lượng mặt trời."},
+      {q:"Picture 4: Wind turbines.", v:"Hình 4: Tua bin gió.", o:[{t:"wind energy",v:"năng lượng gió"},{t:"solar energy",v:""},{t:"oil",v:""}], a:0, e:"Cánh quạt gió (Wind turbines)."}
+    ]
+  },
+  {
+    id: "cl1_ex3", title: "A Closer Look 1 - Ex 3", desc: "Complete Sentences (Word Bank)", type: "quiz",
+    qs: [
+      {q:"1. A good place to change ______ to energy is near the sea because of sea breezes.", v:"Nơi tốt để chuyển ______ thành năng lượng là gần biển...", o:[{t:"wind",v:"gió"},{t:"solar",v:""},{t:"hydro",v:""}], a:0, e:"Sea breezes (gió biển) -> Wind."},
+      {q:"2. They are putting solar panels on the roof to produce ______.", v:"Họ đặt pin mặt trời để sản xuất...", o:[{t:"solar energy",v:"năng lượng mặt trời"},{t:"wind energy",v:""},{t:"water",v:""}], a:0, e:"Solar panels -> Solar energy."},
+      {q:"3. When energy comes from ______, we call it hydro energy.", v:"Khi năng lượng từ ______, gọi là thủy điện.", o:[{t:"water",v:"nước"},{t:"sun",v:""},{t:"wind",v:""}], a:0, e:"Hydro -> Water."},
+      {q:"4. They are reducing the use of ______ because it is not safe to produce.", v:"Họ giảm dùng ______ vì không an toàn.", o:[{t:"nuclear energy",v:"năng lượng hạt nhân"},{t:"solar energy",v:""},{t:"wind energy",v:""}], a:0, e:"Nuclear energy thường được coi là rủi ro (not safe)."}
+    ]
+  },
+  {
+    id: "cl1_pron", title: "A Closer Look 1 - Pronunciation", desc: "Stress in 3-syllable words", type: "quiz",
+    qs: [
+      {q:"4a. 'energy - Stress is on:", v:"Trọng âm từ 'energy' rơi vào...", o:[{t:"1st syllable",v:"âm 1"},{t:"2nd syllable",v:"âm 2"},{t:"3rd syllable",v:"âm 3"}], a:0, e:"'En-er-gy' (1)."},
+      {q:"4b. 'dangerous - Stress is on:", v:"Trọng âm từ 'dangerous' rơi vào...", o:[{t:"1st syllable",v:"âm 1"},{t:"2nd syllable",v:""},{t:"3rd syllable",v:""}], a:0, e:"'Dan-ge-rous' (1)."},
+      {q:"4c. 'easily - Stress is on:", v:"Trọng âm từ 'easily' rơi vào...", o:[{t:"1st syllable",v:"âm 1"},{t:"2nd syllable",v:""},{t:"3rd syllable",v:""}], a:0, e:"'Ea-si-ly' (1)."},
+      {q:"4d. ex'pensive - Stress is on:", v:"Trọng âm từ 'expensive' rơi vào...", o:[{t:"2nd syllable",v:"âm 2"},{t:"1st syllable",v:""},{t:"3rd syllable",v:""}], a:0, e:"'Ex-pen-sive' (2)."}
+    ]
+  },
+
+  // --- A CLOSER LOOK 2 ---
+  {
+    id: "cl2_ex2", title: "3. A Closer Look 2 - Ex 2", desc: "Present Continuous (Form)", type: "quiz",
+    qs: [
+      {q:"1. Mai (talk) ______ about types of energy sources now.", v:"Mai đang nói...", o:[{t:"is talking",v:""},{t:"talks",v:""},{t:"are talking",v:""}], a:0, e:"'now' -> Hiện tại tiếp diễn. Mai (số ít) -> is talking."},
+      {q:"2. We (use) ______ solar energy to replace energy from coal today.", v:"Chúng ta đang dùng...", o:[{t:"are using",v:""},{t:"use",v:""},{t:"is using",v:""}], a:0, e:"'today' (xu hướng hiện nay) -> are using."},
+      {q:"3. Keep quiet! The students of Class 7C (take) ______ a test.", v:"Trật tự! Học sinh đang làm bài...", o:[{t:"are taking",v:""},{t:"take",v:""},{t:"is taking",v:""}], a:0, e:"'Keep quiet!' -> Hành động đang xảy ra. Students (số nhiều) -> are taking."},
+      {q:"4. Scientists (develop) ______ new energy sources.", v:"Các nhà khoa học đang phát triển...", o:[{t:"are developing",v:""},{t:"develop",v:""},{t:"is developing",v:""}], a:0, e:"Diễn tả hành động đang diễn ra. Scientists -> are developing."},
+      {q:"5. We (reduce) ______ the use of nuclear energy nowadays.", v:"Ngày nay chúng ta đang giảm...", o:[{t:"are reducing",v:""},{t:"reduce",v:""},{t:"is reducing",v:""}], a:0, e:"'nowadays' (xu hướng) -> are reducing."}
+    ]
+  },
+  {
+    id: "cl2_ex3", title: "A Closer Look 2 - Ex 3", desc: "Circle correct form", type: "quiz",
+    qs: [
+      {q:"1. Are you still ______ on your project now?", v:"Bạn vẫn đang làm dự án à?", o:[{t:"working",v:""},{t:"work",v:""}], a:0, e:"Câu hỏi tiếp diễn 'Are you...' -> V-ing."},
+      {q:"2. Nam and Lan ______ quite well at school this year.", v:"Nam và Lan học khá tốt năm nay.", o:[{t:"are doing",v:""},{t:"do",v:""}], a:0, e:"'this year' (tạm thời/xu hướng) -> are doing."},
+      {q:"3. ______ she ______ at the school library at the moment?", v:"Cô ấy đang học...?", o:[{t:"Is / studying",v:""},{t:"Does / study",v:""}], a:0, e:"'at the moment' -> Is she studying."},
+      {q:"4. Hoa ______ for her exam, so she can't come to the party right now.", v:"Hoa đang học...", o:[{t:"is studying",v:""},{t:"studies",v:""}], a:0, e:"'right now' -> is studying."},
+      {q:"5. We ______ English three times a week.", v:"Chúng tôi học tiếng Anh 3 lần/tuần.", o:[{t:"have",v:""},{t:"are having",v:""}], a:0, e:"'three times a week' (lịch trình/thói quen) -> Hiện tại đơn (have)."}
+    ]
+  },
+  {
+    id: "cl2_ex4", title: "A Closer Look 2 - Ex 4", desc: "Write Sentences (Word Bank)", type: "quiz",
+    qs: [
+      {q:"1. The students / do the project / now.", v:"Học sinh đang làm dự án.", o:[{t:"The students are doing the project now.",v:""},{t:"The students do the project now.",v:""}], a:0, e:"'now' -> are doing."},
+      {q:"2. Mrs Lien / teach us about solar energy / at the moment.", v:"Cô Liên đang dạy...", o:[{t:"Mrs Lien is teaching us...",v:""},{t:"Mrs Lien teaches us...",v:""}], a:0, e:"'at the moment' -> is teaching."},
+      {q:"3. They / learn about energy / this month.", v:"Họ đang học...", o:[{t:"They are learning about energy...",v:""},{t:"They learn about energy...",v:""}], a:0, e:"'this month' -> are learning."},
+      {q:"4. She / not swim / in the swimming pool / right now.", v:"Cô ấy không bơi...", o:[{t:"She isn't swimming...",v:""},{t:"She doesn't swim...",v:""}], a:0, e:"'right now' -> isn't swimming."},
+      {q:"5. Nowadays, people in Iceland / not use energy from coal.", v:"Người Iceland không dùng than.", o:[{t:"people in Iceland are not using...",v:""},{t:"people in Iceland don't use...",v:""}], a:0, e:"'Nowadays' (xu hướng) -> are not using."}
+    ]
+  },
+
+  // --- COMMUNICATION ---
+  {
+    id: "comm_ex4", title: "4. Communication", desc: "Saving Energy (Word Bank)", type: "quiz",
+    qs: [
+      {q:"Lan: What does 'solar energy' ______?", v:"Solar energy nghĩa là gì?", o:[{t:"mean",v:"nghĩa là"},{t:"do",v:""},{t:"make",v:""}], a:0, e:"Cấu trúc hỏi nghĩa: What does ... mean?"},
+      {q:"Mr Tan: It's energy that ______ from the sun.", v:"Nó là năng lượng đến từ...", o:[{t:"comes",v:"đến"},{t:"goes",v:""},{t:"makes",v:""}], a:0, e:"Comes from = Đến từ/bắt nguồn từ."},
+      {q:"Lan: And what does 'wind energy' mean?", v:"Thế wind energy nghĩa là gì?", o:[{t:"It comes from wind.",v:"Nó đến từ gió"},{t:"It is water.",v:""}], a:0, e:"Wind energy comes from wind."},
+      {q:"Mr Tan: It's another type of energy, and it comes from ______.", v:"Nó đến từ...", o:[{t:"wind",v:"gió"},{t:"sun",v:""},{t:"coal",v:""}], a:0, e:"Wind energy comes from wind."}
+    ]
+  },
+
+  // --- SKILLS 1 ---
+  {
+    id: "skills1_read", title: "5. Skills 1 - Reading", desc: "Mr Lam's Lecture", type: "reading",
+    content: [
+      {e:"Hello class. Today I'd like to tell you about two energy sources. They are non-renewable sources and renewable sources.", v:"Chào cả lớp. Hôm nay thầy sẽ nói về 2 nguồn năng lượng: không tái tạo và tái tạo."},
+      {e:"Non-renewable sources are coal, oil and natural gas. We can use these sources to produce energy. They are cheap and easy to use.", v:"Nguồn không tái tạo gồm than, dầu, khí gas. Ta dùng chúng để tạo năng lượng. Chúng rẻ và dễ dùng."},
+      {e:"People use them a lot. But they are very limited and will run out soon.", v:"Mọi người dùng rất nhiều. Nhưng chúng có hạn và sẽ sớm cạn kiệt."},
+      {e:"Renewable sources come from the sun, wind or water. When energy comes from the sun, we call it solar energy.", v:"Nguồn tái tạo đến từ mặt trời, gió, nước. Từ mặt trời gọi là năng lượng mặt trời."},
+      {e:"Wind energy comes from the wind, and hydro energy comes from water.", v:"Năng lượng gió từ gió, thủy điện từ nước."},
+      {e:"Renewable sources are available, clean and safe to use. But they are expensive to produce.", v:"Nguồn tái tạo có sẵn, sạch và an toàn. Nhưng sản xuất thì đắt đỏ."},
+      {e:"In the future we will rely more on renewable energy sources. They are better for the environment and they will not run out.", v:"Trong tương lai ta sẽ dựa nhiều hơn vào năng lượng tái tạo. Chúng tốt cho môi trường và không cạn kiệt."}
+    ]
+  },
+  {
+    id: "skills1_ex2", title: "Skills 1 - Ex 2", desc: "Choose best option", type: "quiz",
+    qs: [
+      {q:"1. Non-renewable sources are cheap and ______.", v:"Nguồn không tái tạo rẻ và...", o:[{t:"B. easy to use",v:"dễ dùng"},{t:"A. available",v:""},{t:"C. expensive",v:""}], a:0, e:"Bài đọc: 'cheap and easy to use'."},
+      {q:"2. ______ come from the sun, wind or water.", v:"...đến từ mặt trời, gió, nước.", o:[{t:"A. Renewable sources",v:"Nguồn tái tạo"},{t:"B. All energy sources",v:""},{t:"C. Non-renewable",v:""}], a:0, e:"Bài đọc: 'Renewable sources come from...'."},
+      {q:"3. When energy comes from water, we call it ______.", v:"Năng lượng từ nước gọi là...", o:[{t:"C. hydro energy",v:"thủy điện"},{t:"A. wind energy",v:""},{t:"B. solar energy",v:""}], a:0, e:"Bài đọc: 'hydro energy comes from water'."},
+      {q:"4. Renewable energy sources are better for ______.", v:"Tốt hơn cho...", o:[{t:"A. the environment",v:"môi trường"},{t:"B. our cars",v:""},{t:"C. hydro energy",v:""}], a:0, e:"Bài đọc: 'better for the environment'."}
+    ]
+  },
+  {
+    id: "skills1_ex3", title: "Skills 1 - Ex 3", desc: "Comprehension Questions", type: "quiz",
+    qs: [
+      {q:"1. How many energy sources are there?", v:"Có bao nhiêu loại?", o:[{t:"Two",v:"Hai"},{t:"Three",v:""},{t:"One",v:""}], a:0, e:"'two energy sources: non-renewable and renewable'."},
+      {q:"2. What do non-renewable sources include?", v:"Nguồn không tái tạo gồm gì?", o:[{t:"Coal, oil, natural gas",v:"Than, dầu, khí"},{t:"Sun, wind",v:""},{t:"Water",v:""}], a:0, e:"'coal, oil and natural gas'."},
+      {q:"3. What are advantages of renewable energy?", v:"Ưu điểm nguồn tái tạo?", o:[{t:"Clean and safe",v:"Sạch và an toàn"},{t:"Cheap",v:""},{t:"Easy",v:""}], a:0, e:"'available, clean and safe to use'."},
+      {q:"4. What will we rely on in the future?", v:"Tương lai dựa vào gì?", o:[{t:"Renewable energy",v:"Năng lượng tái tạo"},{t:"Coal",v:""},{t:"Oil",v:""}], a:0, e:"'rely more on renewable energy sources'."}
+    ]
+  },
+
+  // --- SKILLS 2 ---
+  {
+    id: "skills2_listen", title: "6. Skills 2 - Listening", desc: "Saving Energy (Dialogue)", type: "dialogue",
+    script: [
+      {r:"Mr Lam", e:"We use a lot of energy at home and it costs us a lot. To save energy, we should...", v:"Chúng ta dùng nhiều năng lượng ở nhà và tốn kém. Để tiết kiệm, ta nên..."},
+      {r:"Student 1", e:"Turn off the lights.", v:"Tắt đèn ạ."},
+      {r:"Mr Lam", e:"Right. Turn off the lights when leaving the room.", v:"Đúng. Tắt đèn khi rời phòng."},
+      {r:"Student 2", e:"Use low energy light bulbs.", v:"Dùng bóng đèn tiết kiệm điện."},
+      {r:"Mr Lam", e:"Yes. Use low energy light bulbs at home.", v:"Đúng. Dùng bóng tiết kiệm ở nhà."},
+      {r:"Student 3", e:"Use solar panels to warm water.", v:"Dùng pin mặt trời làm nóng nước."},
+      {r:"Mr Lam", e:"Good idea. Use solar energy to warm water.", v:"Ý hay. Dùng năng lượng mặt trời làm nóng nước."},
+      {r:"Student 4", e:"Turn off electrical appliances when not using them.", v:"Tắt thiết bị điện khi không dùng."},
+      {r:"Mr Lam", e:"Exactly. Turn off the TV or radio when not watching or listening.", v:"Chính xác. Tắt TV, đài khi không xem/nghe."}
+    ]
+  },
+  {
+    id: "skills2_ex2", title: "Skills 2 - Ex 2", desc: "Listen and Circle phrases", type: "quiz",
+    qs: [
+      {q:"Phrase 1: 'turn off the lights'. Did you hear it?", v:"Có nghe thấy không?", o:[{t:"Yes",v:"Có"},{t:"No",v:"Không"}], a:0, e:"Có xuất hiện trong bài."},
+      {q:"Phrase 2: 'save money'. Did you hear it?", v:"Có nghe thấy không?", o:[{t:"No",v:"Không"},{t:"Yes",v:"Có"}], a:0, e:"Không xuất hiện (chỉ nói costs a lot)."},
+      {q:"Phrase 3: 'use low energy light bulbs'. Did you hear it?", v:"Có nghe thấy không?", o:[{t:"Yes",v:"Có"},{t:"No",v:"Không"}], a:0, e:"Có xuất hiện."},
+      {q:"Phrase 4: 'produce electricity'. Did you hear it?", v:"Có nghe thấy không?", o:[{t:"No",v:"Không"},{t:"Yes",v:"Có"}], a:0, e:"Không xuất hiện."},
+      {q:"Phrase 6: 'use solar panels'. Did you hear it?", v:"Có nghe thấy không?", o:[{t:"Yes",v:"Có"},{t:"No",v:"Không"}], a:0, e:"Có xuất hiện (Use solar panels to warm water)."}
+    ]
+  },
+  {
+    id: "skills2_ex3", title: "Skills 2 - Ex 3", desc: "True or False", type: "quiz",
+    qs: [
+      {q:"1. Mr Lam says we use energy for cooking, heating and lighting.", v:"Ông Lâm nói dùng năng lượng để nấu, sưởi, thắp sáng.", o:[{t:"False",v:"Sai"},{t:"True",v:"Đúng"}], a:0, e:"Ông Lâm chỉ nói: 'We use a lot of energy at home...' (không liệt kê cụ thể mục đích)."},
+      {q:"2. Linh always turns off the lights when going out.", v:"Linh luôn tắt đèn khi ra ngoài.", o:[{t:"True",v:"Đúng"},{t:"False",v:"Sai"}], a:0, e:"Linh (Student 1) đề xuất ý kiến, ngụ ý là việc nên làm."},
+      {q:"3. Linh turns off electrical appliances when not using them.", v:"Linh tắt thiết bị điện khi không dùng.", o:[{t:"True",v:"Đúng"},{t:"False",v:"Sai"}], a:0, e:"Đúng (Student 4)."},
+      {q:"4. Minh uses low energy light bulbs at his house.", v:"Minh dùng bóng đèn tiết kiệm.", o:[{t:"True",v:"Đúng"},{t:"False",v:"Sai"}], a:0, e:"Đúng (Student 2)."},
+      {q:"5. Minh uses solar energy to cook meals.", v:"Minh dùng năng lượng mặt trời nấu ăn.", o:[{t:"False",v:"Sai"},{t:"True",v:"Đúng"}], a:0, e:"Sai. Bài nói 'warm water' (làm nóng nước), không phải 'cook meals'."}
+    ]
+  },
+
+  // --- LOOKING BACK ---
+  {
+    id: "lb_ex1", title: "7. Looking Back - Ex 1", desc: "Match Adjectives & Nouns", type: "quiz",
+    qs: [
+      {q:"1. solar ______", v:"Nối từ...", o:[{t:"e. energy",v:"năng lượng mặt trời"},{t:"a. water",v:""}], a:0, e:"Solar energy."},
+      {q:"2. hot ______", v:"Nối từ...", o:[{t:"a. water",v:"nước nóng"},{t:"e. energy",v:""}], a:0, e:"Hot water."},
+      {q:"3. electrical ______", v:"Nối từ...", o:[{t:"d. appliances",v:"thiết bị điện"},{t:"b. energy sources",v:""}], a:0, e:"Electrical appliances."},
+      {q:"4. renewable ______", v:"Nối từ...", o:[{t:"b. energy sources",v:"nguồn tái tạo"},{t:"c. energy light bulbs",v:""}], a:0, e:"Renewable energy sources."},
+      {q:"5. low ______", v:"Nối từ...", o:[{t:"c. energy light bulbs",v:"bóng tiết kiệm"},{t:"d. appliances",v:""}], a:0, e:"Low energy light bulbs."}
+    ]
+  },
+  {
+    id: "lb_ex2", title: "Looking Back - Ex 2", desc: "Complete Sentences", type: "quiz",
+    qs: [
+      {q:"1. We should use ______ in our homes to save energy.", v:"Nên dùng ______ để tiết kiệm điện.", o:[{t:"low energy light bulbs",v:"bóng tiết kiệm"},{t:"hot water",v:""},{t:"solar energy",v:""}], a:0, e:"Dùng bóng tiết kiệm để tiết kiệm điện."},
+      {q:"2. Do they always turn off the ______ before leaving the room?", v:"Có tắt ______ trước khi đi không?", o:[{t:"electrical appliances",v:"thiết bị điện"},{t:"water",v:""},{t:"sun",v:""}], a:0, e:"Tắt thiết bị điện."},
+      {q:"3. We can protect the environment by using ______.", v:"Bảo vệ môi trường bằng cách dùng...", o:[{t:"renewable energy sources",v:"nguồn tái tạo"},{t:"coal",v:""},{t:"oil",v:""}], a:0, e:"Nguồn tái tạo tốt cho môi trường."},
+      {q:"4. When energy comes from the sun, we call it ______.", v:"Năng lượng từ mặt trời gọi là...", o:[{t:"solar energy",v:"năng lượng mặt trời"},{t:"wind energy",v:""}], a:0, e:"Sun -> Solar energy."},
+      {q:"5. She has ______ day and night because she has solar panels.", v:"Cô ấy có ______ ngày đêm nhờ pin mặt trời.", o:[{t:"hot water",v:"nước nóng"},{t:"cold water",v:""}], a:0, e:"Pin mặt trời thường dùng để làm nóng nước (solar water heater)."}
+    ]
+  },
+  {
+    id: "lb_ex3", title: "Looking Back - Ex 3", desc: "Correct Verb Form", type: "quiz",
+    qs: [
+      {q:"1. Look! It (rain) ______ heavily.", v:"Nhìn kìa! Trời đang mưa to.", o:[{t:"is raining",v:""},{t:"rains",v:""}], a:0, e:"'Look!' -> Hiện tại tiếp diễn."},
+      {q:"2. Normally they (start) ______ school at eight.", v:"Thông thường họ bắt đầu...", o:[{t:"start",v:""},{t:"are starting",v:""}], a:0, e:"'Normally' -> Hiện tại đơn."},
+      {q:"3. He hasn't got a bike... so he (walk) ______ to school this week.", v:"Tuần này anh ấy đi bộ...", o:[{t:"is walking",v:""},{t:"walks",v:""}], a:0, e:"'this week' (hành động tạm thời) -> Hiện tại tiếp diễn."},
+      {q:"4. He always (do) ______ his homework in the evening.", v:"Anh ấy luôn làm...", o:[{t:"does",v:""},{t:"is doing",v:""}], a:0, e:"'always' + thói quen -> Hiện tại đơn."},
+      {q:"5. I'm afraid I have no time... I (write) ______ an essay.", v:"Tôi đang viết tiểu luận.", o:[{t:"am writing",v:""},{t:"write",v:""}], a:0, e:"Diễn tả hành động đang xảy ra lúc nói (have no time now)."}
+    ]
+  },
+  {
+    id: "lb_ex4", title: "Looking Back - Ex 4", desc: "Find Mistake", type: "quiz",
+    qs: [
+      {q:"1. The students do the project in Unit 10 now.", v:"Tìm lỗi sai.", o:[{t:"do",v:"sai -> are doing"},{t:"project",v:""},{t:"now",v:""}], a:0, e:"Có 'now' phải dùng 'are doing'."},
+      {q:"2. At the moment, the teacher is explain how solar energy works.", v:"Tìm lỗi sai.", o:[{t:"is explain",v:"sai -> is explaining"},{t:"works",v:""},{t:"At the moment",v:""}], a:0, e:"Tiếp diễn phải là V-ing ('is explaining')."},
+      {q:"3. Nowadays, people in Africa is not using energy from natural gas.", v:"Tìm lỗi sai.", o:[{t:"is not using",v:"sai -> are not using"},{t:"Nowadays",v:""},{t:"energy",v:""}], a:0, e:"People (số nhiều) -> 'are not using'."},
+      {q:"4. They are use wind energy instead of coal.", v:"Tìm lỗi sai.", o:[{t:"are use",v:"sai -> use / are using"},{t:"instead of",v:""},{t:"wind energy",v:""}], a:0, e:"Phải là 'use' (hiện tại đơn) hoặc 'are using'. 'Are use' là sai ngữ pháp."},
+      {q:"5. We look for a cheap, clean... source of energy now.", v:"Tìm lỗi sai.", o:[{t:"look",v:"sai -> are looking"},{t:"cheap",v:""},{t:"now",v:""}], a:0, e:"'now' -> 'are looking'."}
+    ]
+  }
+];
+
+/* ==========================================================================
+   GAME ENGINE: MUSIC, TTS, RENDERING
+   ========================================================================== */
+let totalQ = 0;
+let answeredQ = 0;
+let score = 0;
+let isMusicOn = false;
+let isViVisible = true;
+let audioCtx, musicInterval;
+let synth = window.speechSynthesis;
+let voices = [];
+
+// Pre-calc total questions
+DATA.forEach(s => { if(s.qs) totalQ += s.qs.length; });
+
+window.onload = () => {
+  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = () => { voices = synth.getVoices(); };
+  setTimeout(() => { voices = synth.getVoices(); }, 500);
+  
+  document.getElementById('totalQ').innerText = totalQ;
+  renderSidebar();
+  loadSlide(0);
+};
+
+/* --- RENDER SIDEBAR --- */
+function renderSidebar() {
+  const sb = document.getElementById('sidebar');
+  let html = '';
+  DATA.forEach((sec, i) => {
+    html += `<button class="nav-btn ${i===0?'active':''}" id="nav-${i}" onclick="loadSlide(${i})">
+      ${sec.title} <br><span style="font-size:11px; opacity:0.7">${sec.desc}</span>
+    </button>`;
+  });
+  sb.innerHTML = html;
+}
+
+/* --- RENDER SLIDE --- */
+function loadSlide(idx) {
+  stopAudio();
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`nav-${idx}`).classList.add('active');
+
+  const data = DATA[idx];
+  const main = document.getElementById('main');
+  
+  let html = `<div class="slide">
+    <h2>${data.title}</h2>
+    <div class="desc">${data.desc}</div>`;
+
+  // TYPE: DIALOGUE
+  if (data.type === 'dialogue') {
+    html += `
+      <div style="margin-bottom:10px;">
+        <button class="ctrl-btn active" onclick="playScript(${idx})">▶ Nghe hội thoại</button>
+        <button class="ctrl-btn" onclick="stopAudio()">◼ Dừng</button>
+      </div>
+      <div class="scroll-content">`;
+    data.script.forEach((l, i) => {
+      html += `<div class="line" id="line-${i}" onclick="speakLine(${idx}, ${i})">
+        <span class="role" style="color:${getRoleColor(l.r)}">${l.r}:</span> 
+        <span class="en">${l.e}</span>
+        <span class="vi ${isViVisible?'':'hidden'}">${l.v}</span>
+      </div>`;
+    });
+    html += `</div>
+      <button class="next-btn" onclick="loadSlide(${idx+1})" style="display:block">Tiếp theo ➜</button>
+    `;
+  }
+  
+  // TYPE: READING
+  else if (data.type === 'reading') {
+    html += `<div class="scroll-content">`;
+    data.content.forEach(p => {
+      html += `<p style="margin-bottom:12px">
+        <span class="en" style="font-weight:600">${p.e}</span>
+        <span class="vi ${isViVisible?'':'hidden'}">${p.v}</span>
+      </p>`;
+    });
+    html += `</div>`;
+    if(data.qs) {
+       data.qs.forEach((q, qIdx) => { html += renderQuizItem(idx, q, qIdx); });
+    }
+    if(idx < DATA.length - 1) {
+        html += `<button class="next-btn" style="display:block" onclick="loadSlide(${idx+1})">Chuyển phần tiếp theo ➜</button>`;
+    }
+  }
+
+  // TYPE: QUIZ
+  else if (data.type === 'quiz') {
+    data.qs.forEach((q, qIdx) => { html += renderQuizItem(idx, q, qIdx); });
+    if (idx < DATA.length - 1) {
+      html += `<button class="next-btn" style="display:block" onclick="loadSlide(${idx+1})">Chuyển phần tiếp theo ➜</button>`;
+    } else {
+      html += `<div style="text-align:center; margin-top:20px; color:#27ae60; font-weight:bold; font-size:18px">🎉 CHÚC MỪNG! BẠN ĐÃ HOÀN THÀNH UNIT 10! 🎉</div>`;
+    }
+  }
+
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function renderQuizItem(idx, q, qIdx) {
+    // SHUFFLE OPTIONS
+    let options = q.o.map((opt, i) => ({...opt, originalIndex: i}));
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+
+    let itemHtml = `
+      <div class="q-block" id="q-${idx}-${qIdx}">
+        <div class="q-text">${qIdx+1}. ${q.q}</div>
+        <div class="q-vi ${isViVisible?'':'hidden'}">${q.v}</div>
+        <div class="opts-grid">`;
+    options.forEach((opt, oIdx) => {
+      itemHtml += `<button class="opt-btn" onclick="checkAns(this, ${idx}, ${qIdx}, ${opt.originalIndex}, ${q.a})">
+        <span>${opt.t}</span>
+        <span class="opt-sub ${isViVisible?'':'hidden'}">${opt.v}</span>
+      </button>`;
+    });
+    itemHtml += `</div>
+        <div class="expl-box" id="expl-${idx}-${qIdx}">
+          <span class="expl-title">GIẢI THÍCH CHI TIẾT:</span> ${q.e}
+        </div>
+      </div>
+    `;
+    return itemHtml;
+}
+
+/* --- LOGIC --- */
+function checkAns(btn, sIdx, qIdx, uAns, cAns) {
+  const parent = btn.parentElement;
+  const btns = parent.getElementsByClassName('opt-btn');
+  for(let b of btns) b.style.pointerEvents = 'none';
+
+  const explBox = document.getElementById(`expl-${sIdx}-${qIdx}`);
+  explBox.style.display = 'block';
+
+  if (uAns === cAns) {
+    btn.classList.add('correct');
+    score += 10;
+    document.getElementById('score').innerText = score;
+    setTimeout(() => {
+        // Auto scroll to next question or explanation
+        explBox.scrollIntoView({behavior: "smooth", block: "center"});
+    }, 500);
+  } else {
+    btn.classList.add('wrong');
+  }
+  
+  answeredQ++;
+  document.getElementById('qCount').innerText = Math.min(answeredQ, totalQ);
+}
+
+function getRoleColor(role) {
+  if(['Mr Tan','Nam','Mr Lam','Mark'].includes(role)) return '#2980B9'; // Blue
+  if(['Lan','Mai','Ha','Student 1','Student 2'].includes(role)) return '#C0392B'; // Red
+  return '#D35400';
+}
+
+/* --- AUDIO & TTS --- */
+function toggleMusic() {
+  isMusicOn = !isMusicOn;
+  const btn = document.getElementById('btnMusic');
+  btn.innerText = isMusicOn ? "🎵 Nhạc: ON" : "🎵 Nhạc: OFF";
+  btn.classList.toggle('music-on', isMusicOn);
+
+  if (isMusicOn) {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    playBeat();
+  } else {
+    clearInterval(musicInterval);
+  }
+}
+
+function playBeat() {
+  // Energetic Techno Beat
+  const notes = [130.81, 146.83, 164.81, 196.00]; 
+  let step = 0;
+  
+  function tick() {
+    if (!isMusicOn) return;
+    const now = audioCtx.currentTime;
+    
+    if (step % 2 === 0) {
+      let osc = audioCtx.createOscillator();
+      let g = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = notes[Math.floor(Math.random()*notes.length)] * 2;
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(0.04, now + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      osc.connect(g); g.connect(audioCtx.destination);
+      osc.start(now); osc.stop(now + 0.4);
+    }
+    if (step % 4 === 0) {
+       let kick = audioCtx.createOscillator();
+       let kg = audioCtx.createGain();
+       kick.frequency.setValueAtTime(150, now);
+       kick.frequency.exponentialRampToValueAtTime(0.01, now + 0.5);
+       kg.gain.setValueAtTime(0.5, now);
+       kg.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+       kick.connect(kg); kg.connect(audioCtx.destination);
+       kick.start(now); kick.stop(now + 0.5);
+    }
+    step++;
+  }
+  musicInterval = setInterval(tick, 180);
+}
+
+function playScript(idx) {
+  if(isMusicOn) clearInterval(musicInterval); 
+  const script = DATA[idx].script;
+  synth.cancel();
+  let i = 0;
+  
+  function next() {
+    if (i >= script.length) {
+      if(isMusicOn) playBeat();
+      return;
+    }
+    const line = script[i];
+    const u = new SpeechSynthesisUtterance(line.e);
+    
+    const voices = synth.getVoices();
+    const isFemale = ['Lan','Mi','Mai','Ha'].includes(line.r);
+    u.voice = voices.find(v => v.name.includes(isFemale ? 'Female' : 'Male')) || voices[0];
+    u.rate = 0.9;
+
+    document.querySelectorAll('.line').forEach(l => l.classList.remove('active'));
+    const el = document.getElementById(`line-${i}`);
+    if(el) {
+      el.classList.add('active');
+      el.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+
+    u.onend = () => { i++; next(); };
+    synth.speak(u);
+  }
+  next();
+}
+
+function stopAudio() {
+  synth.cancel();
+  if(isMusicOn) playBeat();
+}
+
+function speakLine(sIdx, lIdx) {
+  synth.cancel();
+  const line = DATA[sIdx].script[lIdx];
+  const u = new SpeechSynthesisUtterance(line.e);
+  const voices = synth.getVoices();
+  const isFemale = ['Lan','Mi','Mai','Ha'].includes(line.r);
+  u.voice = voices.find(v => v.name.includes(isFemale ? 'Female' : 'Male')) || voices[0];
+  synth.speak(u);
+  
+  document.querySelectorAll('.line').forEach(l => l.classList.remove('active'));
+  document.getElementById(`line-${lIdx}`).classList.add('active');
+}
+
+function toggleVi() {
+  isViVisible = !isViVisible;
+  document.querySelectorAll('.vi, .q-vi, .opt-sub').forEach(el => el.classList.toggle('hidden', !isViVisible));
+  const btn = document.getElementById('btnVi');
+  btn.classList.toggle('active');
+  btn.innerText = isViVisible ? "🇻🇳 Dịch: ON" : "🇻🇳 Dịch: OFF";
+}
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = () => { voices = synth.getVoices(); };
+}
+
+</script>
+</body>
+</html>
